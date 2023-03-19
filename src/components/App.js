@@ -43,11 +43,11 @@ function App() {
   };
 
 
-  const addToMyTeam = (hero)=>{
+  const addToMyTeam = (hero) => {
     // 6 - When user click “Add” button character should be added to “My Team” list (you cannot add same character two times)
     // najpre provera da li taj vec postoji
     let alreadyExist = false;
-    myTeam.forEach((item)=>{
+    myTeam.forEach((item) => {
       if (hero.id === item.id) {
         // vec imamo item sa istim id
         alreadyExist = true;
@@ -59,6 +59,18 @@ function App() {
     } else {
       window.alert('you cannot add same character two times');
     }
+  };
+
+
+  const deleteFromMyTeam = (id) => {
+    const updatedMyTeam = myTeam.filter((item) => {
+      if (item.id === id) {
+        // to je taj kojeg brisemo
+        return false; // ne ulazi u sastav novog niza
+      }
+      return true; // svi ostali ostaju u nizu
+    });
+    setMyTeam(updatedMyTeam); // upisujemo u state modifikovani niz u kojem vise nema onog kojeg smo obrisali
   };
 
 
@@ -75,7 +87,7 @@ function App() {
     <div className="App">
       <div onClick={fetchCharacters}>LOGO</div>
       <SearchBar fetchSearchResults={fetchSearchResults} />
-      <MyTeam myTeam={myTeam} />
+      <MyTeam myTeam={myTeam} deleteFromMyTeam={deleteFromMyTeam} />
       <PageHeros heros={heros} addToMyTeam={addToMyTeam} />
     </div>
   );

@@ -1,3 +1,4 @@
+import MyTeamMember from "./MyTeamMember";
 
 
 
@@ -11,10 +12,7 @@ function MyTeam(props) {
         {
           myTeam.map((item)=>{
             return (
-              <div>
-                My team item <br/>
-                {item.name}
-              </div>
+              <MyTeamMember key={item.id} item={item} deleteFromMyTeam={props.deleteFromMyTeam}/>
             );
           })
         }
