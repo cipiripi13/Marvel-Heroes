@@ -18,7 +18,16 @@
   height: 200px;
   margin-right: 10px;
   margin-bottom: 10px;
+
+  overflow: hidden;
 }
+
+.card img {
+  max-width: 120px;
+  height: auto;
+}
+
+
 
 .card.card--placeholder {
   opacity: 0.5;
