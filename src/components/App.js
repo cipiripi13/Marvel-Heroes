@@ -3,9 +3,11 @@ import './App.css';
 import SearchBar from './SearchBar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import MyTeam from './MyTeam';
 
 function App() {
   const [heros, setHeros] = useState([]);
+  const [myTeam, setMyTeam] = useState([]);
 
   const fetchCharacters = () => {
     const url = 'https://gateway.marvel.com/v1/public/characters?ts=1&apikey=d2841df049ab6542a3a9ae1f3aa21c60&hash=48fb9c38ebc0b95080a17a472148183a';
@@ -41,6 +43,25 @@ function App() {
   };
 
 
+  const addToMyTeam = (hero)=>{
+    // 6 - When user click “Add” button character should be added to “My Team” list (you cannot add same character two times)
+    // najpre provera da li taj vec postoji
+    let alreadyExist = false;
+    myTeam.forEach((item)=>{
+      if (hero.id === item.id) {
+        // vec imamo item sa istim id
+        alreadyExist = true;
+      }
+    });
+    if (alreadyExist === false) {
+      // ako ne postoji, dodajemo ga sad
+      setMyTeam([...myTeam, hero]);
+    } else {
+      window.alert('you cannot add same character two times');
+    }
+  };
+
+
 
   useEffect(() => {
     // ovo ce biti pozvano samo jednom kad se komponenta mounteuje (nacrta na ekranu)
@@ -54,7 +75,8 @@ function App() {
     <div className="App">
       <div onClick={fetchCharacters}>LOGO</div>
       <SearchBar fetchSearchResults={fetchSearchResults} />
-      <PageHeros heros={heros} />
+      <MyTeam myTeam={myTeam} />
+      <PageHeros heros={heros} addToMyTeam={addToMyTeam} />
     </div>
   );
 }

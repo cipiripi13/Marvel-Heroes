@@ -26,7 +26,7 @@ function PageHeros(props) {
         {
           heros.length > 0 &&
             heros.map((item) => {
-              return (<Card key={item.id} item={item}/>);
+              return (<Card key={item.id} item={item} addToMyTeam={props.addToMyTeam}/>);
             })
         }
       </div>
