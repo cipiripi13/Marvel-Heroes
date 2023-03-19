@@ -1,0 +1,25 @@
+* {
+  transition: all 0.2 ease;
+  box-sizing: border-box;
+}
+
+.heros-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.card {
+  border: 1px solid gray;
+  padding: 20px;
+  width: 240px;
+  height: 200px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.card.card--placeholder {
+  opacity: 0.5;
+}
