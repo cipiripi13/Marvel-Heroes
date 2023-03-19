@@ -6,8 +6,46 @@ import axios from 'axios';
 import MyTeam from './MyTeam';
 
 function App() {
+  const [initialized, setInitialized] = useState(false);
   const [heros, setHeros] = useState([]);
   const [myTeam, setMyTeam] = useState([]);
+
+  useEffect(()=>{
+    // INICIJALIZACIJA
+    // citamo iz local storage ranije sacuvan myTeam ukoliko ga uopste ima
+    try {
+      const json = window.localStorage.getItem("myteam"); 
+      const previouslyStoredMyTeam = JSON.parse(json);
+      if (Array.isArray(previouslyStoredMyTeam)) {
+        // sve je u redu proslo i prociatli smo podatak i uverili se da je podatak ispravan Array
+        setMyTeam(previouslyStoredMyTeam); // upisujemo ranije (pre restartovanja) sacuvan myTeam u aktuelni state
+      }
+    } catch (error) {
+      
+    }
+    setInitialized(true);
+  }, []);
+
+  useEffect(()=>{
+    // sada useEffect prati promenjivu myTeam
+    // ovo ce biti pozvano sam okad se myTeam promeni
+
+    // 8 - Extend functionality of “My Team” list so it can be preserved even when page is reloaded
+    // zapisujemo myTeam u localStorage stanu memoriju browsera
+    try {
+      if (initialized === true) {
+        // zapisujemo aktuelni state u localStorage samo ako je vec obavljena inicijalizacija
+        const json = JSON.stringify(myTeam); // pretvaramo myTeam u json string
+        window.localStorage.setItem("myteam", json);
+        /*
+        Dakle, pored toga sto podatak smo vec upisali u state myTeam ovaj useEffect ce da taj podatak TAKODJE UPISE I U LOCALSTORAGE da b ipreziveo i gasenje kompjutera.
+        */
+      }
+    } catch (error) {
+      
+    }
+  }, [myTeam, initialized]);
+
 
   const fetchCharacters = () => {
     const url = 'https://gateway.marvel.com/v1/public/characters?ts=1&apikey=d2841df049ab6542a3a9ae1f3aa21c60&hash=48fb9c38ebc0b95080a17a472148183a';
