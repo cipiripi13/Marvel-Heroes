@@ -4,7 +4,7 @@ import { useState } from "react";
 
 function SearchBar(props) {
   const fetchSearchResults = props.fetchSearchResults;
-  const [search, setSearch] = useState('abc');
+  const [search, setSearch] = useState('');
 
   const handleChange = (e) => {
     const target = e.target; // html element na kojem se event desio

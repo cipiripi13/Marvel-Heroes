@@ -4,29 +4,32 @@ import SearchBar from './SearchBar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import MyTeam from './MyTeam';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import PageCharacterInfo from './PageCharacterInfo';
 
 function App() {
+  const navigate = useNavigate();
   const [initialized, setInitialized] = useState(false);
   const [heros, setHeros] = useState([]);
   const [myTeam, setMyTeam] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     // INICIJALIZACIJA
     // citamo iz local storage ranije sacuvan myTeam ukoliko ga uopste ima
     try {
-      const json = window.localStorage.getItem("myteam"); 
+      const json = window.localStorage.getItem("myteam");
       const previouslyStoredMyTeam = JSON.parse(json);
       if (Array.isArray(previouslyStoredMyTeam)) {
         // sve je u redu proslo i prociatli smo podatak i uverili se da je podatak ispravan Array
         setMyTeam(previouslyStoredMyTeam); // upisujemo ranije (pre restartovanja) sacuvan myTeam u aktuelni state
       }
     } catch (error) {
-      
+
     }
     setInitialized(true);
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     // sada useEffect prati promenjivu myTeam
     // ovo ce biti pozvano sam okad se myTeam promeni
 
@@ -42,7 +45,7 @@ function App() {
         */
       }
     } catch (error) {
-      
+
     }
   }, [myTeam, initialized]);
 
@@ -120,13 +123,37 @@ function App() {
   }, []);
 
 
+  const clickLogo = () => {
+    fetchCharacters(); // fetvhujemo pocetn ispisak charactera
+    navigate("/"); // i takodje oldazimo na pocetnu stranu
+  };
 
   return (
     <div className="App">
-      <div onClick={fetchCharacters}>LOGO</div>
-      <SearchBar fetchSearchResults={fetchSearchResults} />
-      <MyTeam myTeam={myTeam} deleteFromMyTeam={deleteFromMyTeam} />
-      <PageHeros heros={heros} addToMyTeam={addToMyTeam} />
+      <div onClick={clickLogo}>LOGO</div>
+      <div>
+
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <SearchBar fetchSearchResults={fetchSearchResults} />
+                <MyTeam myTeam={myTeam} deleteFromMyTeam={deleteFromMyTeam} />
+                <PageHeros heros={heros} addToMyTeam={addToMyTeam} />
+              </>
+            }
+          />
+          <Route
+            path="/character/:id"
+            element={<PageCharacterInfo />}
+          />
+          <Route
+            path="*"
+            element={<div>ROUTE NOT FOUND</div>}
+          />
+        </Routes>
+      </div>
     </div>
   );
 }
