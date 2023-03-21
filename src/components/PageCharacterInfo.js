@@ -1,11 +1,22 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ModalImage from "./ModalImage";
 
 
 function PageCharacterInfo(props) {
   let { id } = useParams(); // uzima ID iz rute tj. browser adress bara.
   const [hero, setHero] = useState(null);
+  const [modalOpened, setModalOpened] = useState(false);
+
+  const toggleModal = () => {
+    // ukljuci/iskljci modal
+    if (modalOpened) {
+      setModalOpened(false);
+    } else {
+      setModalOpened(true);
+    }
+  };
 
   const fetchSingleHero = (id) => {
     console.log('sad cemo da fetchujemo za single hero sa ID-om:', id);
@@ -40,7 +51,7 @@ function PageCharacterInfo(props) {
     imgSrc = hero.thumbnail.path + '.' + hero.thumbnail.extension;
   }
   console.log(imgSrc);
-  
+
   return (
     <div className="character-info">
       <p>Character info</p>
@@ -50,13 +61,16 @@ function PageCharacterInfo(props) {
           <>
             <h1>{hero.name}</h1>
             <p>{hero.description}</p>
-
             <br />
-            <img src={imgSrc} />
+            <img src={imgSrc} onClick={toggleModal} />
             <br />
           </>
         ) : (<div>Spinner...</div>)
       }
+      {
+        modalOpened && (<ModalImage imgSrc={imgSrc} toggleModal={toggleModal} />)
+      }
+
     </div>
   );
 }

@@ -129,6 +129,7 @@ function App() {
   };
 
   return (
+    <>
     <div className="App">
       <div onClick={clickLogo}>LOGO</div>
       <div>
@@ -153,6 +154,7 @@ function App() {
         </Routes>
       </div>
     </div>
+    </>
   );
 }
 
