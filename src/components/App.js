@@ -6,6 +6,7 @@ import axios from 'axios';
 import MyTeam from './MyTeam';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import PageCharacterInfo from './PageCharacterInfo';
+import { Footer } from './Footer';
 
 function App() {
   const navigate = useNavigate();
@@ -132,7 +133,7 @@ function App() {
   return (
     <>
       <div className="App">
-        <div onClick={clickLogo} className='logo'>LOGO</div>
+        <div onClick={clickLogo} className='logo'>Marvel Heros </div>
         <div>
 
           <Routes>
@@ -146,8 +147,10 @@ function App() {
             />
             <Route path="/character/:id" element={<PageCharacterInfo />} />
             <Route path="*" element={<div>ROUTE NOT FOUND</div>} />
+            
           </Routes>
         </div>
+        <div onClick={clickLogo} className='logo'><span>&#169;</span> Katarina Krstić</div>
       </div>
     </>
   );
