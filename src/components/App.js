@@ -49,7 +49,7 @@ function App() {
     }
   }, [myTeam, initialized]);
 
-
+// glavi fetch podataka
   const fetchCharacters = () => {
     const url = 'https://gateway.marvel.com/v1/public/characters?ts=1&apikey=d2841df049ab6542a3a9ae1f3aa21c60&hash=48fb9c38ebc0b95080a17a472148183a';
     axios.get(url)
@@ -66,6 +66,7 @@ function App() {
       })
   };
 
+  // fetch na pretragu
   const fetchSearchResults = (q) => {
     console.log('sad cemo da pretrazujemo na rec', q);
     const url = 'https://gateway.marvel.com/v1/public/characters?ts=1&apikey=d2841df049ab6542a3a9ae1f3aa21c60&hash=48fb9c38ebc0b95080a17a472148183a' + '&name=' + q;
@@ -130,30 +131,24 @@ function App() {
 
   return (
     <>
-    <div className="App">
-      <div onClick={clickLogo}>LOGO</div>
-      <div>
+      <div className="App">
+        <div onClick={clickLogo} className='logo'>LOGO</div>
+        <div>
 
-        <Routes>
-          <Route path="/" element={
+          <Routes>
+            <Route path="/" element={
               <>
                 <SearchBar fetchSearchResults={fetchSearchResults} />
                 <MyTeam myTeam={myTeam} deleteFromMyTeam={deleteFromMyTeam} />
                 <PageHeros heros={heros} addToMyTeam={addToMyTeam} />
               </>
             }
-          />
-          <Route
-            path="/character/:id"
-            element={<PageCharacterInfo />}
-          />
-          <Route
-            path="*"
-            element={<div>ROUTE NOT FOUND</div>}
-          />
-        </Routes>
+            />
+            <Route path="/character/:id" element={<PageCharacterInfo />} />
+            <Route path="*" element={<div>ROUTE NOT FOUND</div>} />
+          </Routes>
+        </div>
       </div>
-    </div>
     </>
   );
 }

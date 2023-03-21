@@ -1,28 +1,64 @@
 * {
   transition: all 0.2s ease;
   box-sizing: border-box;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  
+}
+body{
+  background-image: url('https://p.kindpng.com/picc/s/460-4608240_black-and-white-marvel-logo-png-transparent-png.png');
+  
+}
+.logo{
+  background-color: rgb(189, 111, 111);
+  font-size: 28px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
+/* App root styling */
 .App {
   padding: 20px;
 }
 
+/* search-bar styling */
+
+input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  margin-right: 10px;
+}
+button[type="button"] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+/* ********************************************************************************************* */
+
+
+/* Main page, class hero - container of all cards */
 .heros-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: stretch;
+  
+}
+.heros-list .card button {
+  margin-right: 45px;
 }
 
 .card {
+  
   border: 1px solid gray;
   padding: 20px;
   width: 240px;
   height: 300px;
   margin-right: 10px;
   margin-bottom: 10px;
-
   overflow: hidden;
 }
 
@@ -31,16 +67,33 @@
   height: auto;
 }
 
+/* Style for cardPlaceholder */
 .card.card--placeholder {
   opacity: 0.5;
 }
 
+
+/* Style for Component Card when we click on info */
 .character-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 23px;
+  font-weight: bolder;
+  color: rgb(189, 111, 111); ;
+  background-image: url('https://p.kindpng.com/picc/s/460-4608240_black-and-white-marvel-logo-png-transparent-png.png');
+  
 }
 .character-info img {
-  max-width: 200px;
+  max-width: 350px;
   height: auto;
+  border-radius: 20px;
 }
+.character-info label {
+  margin-bottom: 15px;
+}
+/* *************************************************************************************** */
 
 .my-team-list {
   display: flex;
@@ -75,24 +128,32 @@
   object-fit: cover;
 }
 
+
+/* Also part of Character Info */
 .comics-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: stretch;
+  
 }
 .comic-card {
-  border: 1px solid gray;
+  border: 1px solid rgb(189, 111, 111);
+  border-radius: 10px;
   padding: 10px;
-  width: 120px;
-  height: 140px;
+  width: 220px;
+  height: 180px;
   margin-right: 10px;
   margin-bottom: 10px;
 
   overflow: hidden;
 
-  font-size: 12px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
 }
 
 .comic-info {
@@ -110,7 +171,7 @@
   margin-top: 0px;
   max-width: 400px;
 }
-
+/* ********************************************************************************************* */
 /* MODAL */
 .modal-overlay {
   position: fixed;
@@ -157,6 +218,8 @@
   line-height: 28px;
   cursor: pointer;
 }
+
+/* ********************************************************************************************************** */
 
 /* SPINNER */
 

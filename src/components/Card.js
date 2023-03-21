@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-
+// Card komponenta koja se ucitava na PageHeros.js
 
 function Card(props) {
   const navigate = useNavigate();

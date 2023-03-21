@@ -15,7 +15,7 @@ function PageHeros(props) {
 
   return (
     <div className="heros">
-      <p>Heros page</p>
+      <p style={{fontSize: '20px',}}>All Heros Page</p>
       <div className="heros-list">
         {
           heros.length === 0 &&
