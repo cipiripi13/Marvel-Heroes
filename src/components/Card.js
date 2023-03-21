@@ -14,7 +14,9 @@ function Card(props) {
   };
 
   const handleClickInfo = (e) => {
-    navigate("/character/" + item.id);
+    navigate("/character/" + item.id); // menjamo rutu na info stranicu pojedinanog heor
+    // istovremeno i treba da upisemo u state podatke za njega
+    
   };
 
 

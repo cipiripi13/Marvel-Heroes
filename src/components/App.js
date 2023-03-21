@@ -60,7 +60,7 @@ function App() {
           // respnse je validan
           // podaci koje trazimo su u response.data.data.results
           // treba da ih sacuvamo u lokalni state ove komponente
-          setHeros(response.data.data.results); // ovo znaci molda reactu da kad zavrsi ovo iscrtavanje da izmeni state (i onda ide u drugo iscrtavanje sa novim stateom)
+          setHeros(response.data.data.results); // ovo znaci molba reactu da kad zavrsi ovo iscrtavanje da izmeni state (i onda ide u drugo iscrtavanje sa novim stateom)
           // console.log(heros);
         }
       })
@@ -134,9 +134,7 @@ function App() {
       <div>
 
         <Routes>
-          <Route
-            path="/"
-            element={
+          <Route path="/" element={
               <>
                 <SearchBar fetchSearchResults={fetchSearchResults} />
                 <MyTeam myTeam={myTeam} deleteFromMyTeam={deleteFromMyTeam} />
