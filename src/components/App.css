@@ -75,6 +75,27 @@
 }
 
 
+.comics-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.comic-card {
+  border: 1px solid gray;
+  padding: 10px;
+  width: 120px;
+  height: 140px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  overflow: hidden;
+
+  font-size: 12px;
+}
+
+
 /* MODAL */
 .modal-overlay {
   position: fixed;

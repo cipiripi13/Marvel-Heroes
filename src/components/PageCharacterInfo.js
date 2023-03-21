@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Comics from "./Comics";
 import ModalImage from "./ModalImage";
 
 
@@ -8,6 +9,7 @@ function PageCharacterInfo(props) {
   let { id } = useParams(); // uzima ID iz rute tj. browser adress bara.
   const [hero, setHero] = useState(null);
   const [modalOpened, setModalOpened] = useState(false);
+  const [comicsShown, setComicsShown] = useState(false);
 
   const toggleModal = () => {
     // ukljuci/iskljci modal
@@ -17,6 +19,16 @@ function PageCharacterInfo(props) {
       setModalOpened(true);
     }
   };
+
+  const toggleComics = () => {
+    // ukljuci/iskljci comics
+    if (comicsShown) {
+      setComicsShown(false);
+    } else {
+      setComicsShown(true);
+    }
+  }
+
 
   const fetchSingleHero = (id) => {
     console.log('sad cemo da fetchujemo za single hero sa ID-om:', id);
@@ -53,7 +65,7 @@ function PageCharacterInfo(props) {
   console.log(imgSrc);
 
   return (
-    <div className="character-info">
+    <div className={"character-info" + (comicsShown ? " prikazani" : " skriven")}>
       <p>Character info</p>
       ID je: {id}
       {
@@ -69,7 +81,22 @@ function PageCharacterInfo(props) {
       }
       {
         modalOpened && (<ModalImage imgSrc={imgSrc} toggleModal={toggleModal} />)
+        /* neki komentar */
       }
+      {
+        comicsShown ? (<div onClick={toggleComics}>On</div>) : (<div onClick={toggleComics}>Off</div>)
+      } Show Comics <br/>
+      <label>
+      <input
+        type="checkbox"
+        name="comicsShown"
+        checked={comicsShown}
+        onChange={(e)=>{setComicsShown(e.target.checked)}}
+      />Show Comics</label>
+      {
+        comicsShown ? (<Comics  comics={hero.comics.items} />) : null
+      }
+
 
     </div>
   );
