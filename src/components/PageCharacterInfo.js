@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Comics from "./Comics";
 import ModalImage from "./ModalImage";
+import Spinner from "./Spinner";
 
 
 function PageCharacterInfo(props) {
@@ -77,7 +78,7 @@ function PageCharacterInfo(props) {
             <img src={imgSrc} onClick={toggleModal} />
             <br />
           </>
-        ) : (<div>Spinner...</div>)
+        ) : (<Spinner />)
       }
       {
         modalOpened && (<ModalImage imgSrc={imgSrc} toggleModal={toggleModal} />)
