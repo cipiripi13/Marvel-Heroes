@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Marvel-Heroes/static/css/main.26ebb436.css",
+    "main.js": "/Marvel-Heroes/static/js/main.ca6d032f.js",
+    "index.html": "/Marvel-Heroes/index.html",
+    "main.26ebb436.css.map": "/Marvel-Heroes/static/css/main.26ebb436.css.map",
+    "main.ca6d032f.js.map": "/Marvel-Heroes/static/js/main.ca6d032f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.26ebb436.css",
+    "static/js/main.ca6d032f.js"
+  ]
+}
